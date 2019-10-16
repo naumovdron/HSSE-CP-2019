@@ -1,2 +1,4 @@
 # CP-CPlusPlus-HSSE-2019
-Course Project
+Course project of  student of SPBPU. HSSE 2019
+C++
+'Pacman'
