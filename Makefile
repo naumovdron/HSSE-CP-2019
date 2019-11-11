@@ -1,11 +1,10 @@
 # Version 1.0
 
-PROGRAM_NAME := pacman
+PROGRAM_NAME := cp_naumov
 INCLUDE := include
 SOURCE := src
 CC := g++
 CFLAGS :=-c -Wall -Wextra -Werror -Wno-missing-field-initializers -Wold-style-cast
-LIBS := -Ic/boost_1_71_0
 OBJECTS := $(notdir $(patsubst %.cpp, %.o, $(wildcard $(addsuffix /*.cpp, $(SOURCE)))))
 
 .PHONY: all, clean
@@ -18,10 +17,10 @@ $(PROGRAM_NAME): $(OBJECTS)
 
 %.o: $(addprefix $(SOURCE)/, %.cpp)
 	mkdir -p obj
-	$(CC) $< $(CFLAGS) $(LIBS) $(addprefix -I, $(INCLUDE)) -o $(addprefix obj/, $@)
+	$(CC) $< $(CFLAGS) $(addprefix -I, $(INCLUDE)) -o $(addprefix obj/, $@)
 
 clean :
-	rm -R obj
-	rm -R bin
+	rm -rv obj
+	rm -rv bin
 
 include $(wildcard $(addsuffix /*.d, $(SOURCE)))
