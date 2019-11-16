@@ -1,10 +1,13 @@
-# Version 1.0
+# Version 1.1
 
-PROGRAM_NAME := cp_naumov
-INCLUDE := include
+PROGRAM_NAME := cp_naumov_andrei
+INCLUDE := include C:\SFML-2.5.1\include
+LIBS_PATH := C:\SFML-2.5.1\lib
+LIBS := sfml-graphics sfml-window sfml-system sfml-audio
+
 SOURCE := src
 CC := g++
-CFLAGS :=-c -Wall -Wextra -Werror -Wno-missing-field-initializers -Wold-style-cast
+CFLAGS :=-c -std=c++14 -Wall -Wextra -Werror -Wno-missing-field-initializers -Wold-style-cast
 OBJECTS := $(notdir $(patsubst %.cpp, %.o, $(wildcard $(addsuffix /*.cpp, $(SOURCE)))))
 
 .PHONY: all, clean
@@ -13,7 +16,7 @@ all: $(PROGRAM_NAME)
 	
 $(PROGRAM_NAME): $(OBJECTS)
 	mkdir -p bin
-	$(CC) $(addprefix obj/, $(OBJECTS)) -o $(addprefix bin/, $(PROGRAM_NAME))
+	$(CC) $(addprefix obj/, $(OBJECTS)) -o $(addprefix bin/, $(PROGRAM_NAME)) $(addprefix -L, $(LIBS_PATH)) $(addprefix -l, $(LIBS)) -static -static-libgcc -static-libstdc++
 
 %.o: $(addprefix $(SOURCE)/, %.cpp)
 	mkdir -p obj
