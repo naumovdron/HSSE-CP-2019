@@ -16,7 +16,7 @@ all: $(PROGRAM_NAME)
 	
 $(PROGRAM_NAME): $(OBJECTS)
 	mkdir -p bin
-	$(CC) $(addprefix obj/, $(OBJECTS)) -o $(addprefix bin/, $(PROGRAM_NAME)) $(addprefix -L, $(LIBS_PATH)) $(addprefix -l, $(LIBS)) -static -static-libgcc -static-libstdc++
+	$(CC) $(addprefix obj/, $(OBJECTS)) -o $(addprefix bin/, $(PROGRAM_NAME)) $(addprefix -L, $(LIBS_PATH)) $(addprefix -l, $(LIBS))
 
 %.o: $(addprefix $(SOURCE)/, %.cpp)
 	mkdir -p obj

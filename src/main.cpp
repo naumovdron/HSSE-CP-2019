@@ -1,39 +1,21 @@
+#include <exception>
 #include <iostream>
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
+#include "game.hpp"
 
 int main(int, char**)
 {
-  sf::RenderWindow window(sf::VideoMode(400, 400), "SFML window");
-  sf::Texture texture;
-  if (!texture.loadFromFile("../resources/cute_image.jpg")) {
-    return EXIT_FAILURE;
-  }
-  sf::Sprite sprite(texture);
+  try {
+    Game game;
 
-  sf::Font font;
-  if (!font.loadFromFile("../resources/arial.ttf")) {
-    return EXIT_FAILURE;
-  }
-  sf::Text text("Hello SFML", font, 50);
-
-  sf::Music music;
-  if (!music.openFromFile("../resources/nice_music.ogg")) {
-    return EXIT_FAILURE;
-  }
-
-  music.play();
-  while (window.isOpen()) {
-    sf::Event event;
-    while (window.pollEvent(event)) {
-      if (event.type == sf::Event::Closed) {
-        window.close();
-      }
+    //main cycle
+    while (game) {
+      game();
     }
-    window.clear();
-    window.draw(sprite);
-    window.draw(text);
-    window.display();
+    return 0;
+  } catch (const std::bad_alloc&) {
+    return 2;
+  } catch (const std::exception& exception) {
+    std::cerr << exception.what();
+    return 1;
   }
-  return EXIT_SUCCESS;
 }
