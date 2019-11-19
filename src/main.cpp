@@ -1,10 +1,12 @@
 #include <exception>
 #include <iostream>
+#include <ctime>
 #include "game.hpp"
 
 int main(int, char**)
 {
   try {
+    std::srand(unsigned(std::time(0)));
     Game game;
 
     //main cycle
